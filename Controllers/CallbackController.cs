@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 
 namespace QukBukSampleWeb.Controllers
 {
@@ -10,9 +11,12 @@ namespace QukBukSampleWeb.Controllers
         // GET: CallbackControllercs
         public ActionResult Index()
         {
-            var value = HttpContext.Request.QueryString;
-            //string code = HttpContext.Request.QueryString["code"] ?? "none";
-            //string realmId = Request.QueryString["realmId"] ?? "none";
+            var value = HttpContext.Request.QueryString.Value;
+            var result = HttpUtility.ParseQueryString(value);
+
+            string code = result["code"] ?? "none";
+            string realmId = result["realmId"] ?? "none";
+
             return View();
         }
 

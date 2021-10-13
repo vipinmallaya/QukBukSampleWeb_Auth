@@ -23,9 +23,11 @@ namespace QukBukSampleWeb.Controllers
         {
             var clientid = "ABTxW6lPn1V4YMmvANavfol94a5iuTBDTeg2649dUIAr7OPErt"; //ConfigurationManager.AppSettings["clientid"] as string;
             var clientsecret = "irYUpW7oCl7QosLhQjmk4u3pNjNR9jujN0XBLlBq"; // ConfigurationManager.AppSettings["clientsecret"] as string;
-            var redirectUrl = "https://localhost:44300/home/callback"; //ConfigurationManager.AppSettings["redirectUrl"] as string; 
+            var redirectUrl = "https://localhost:44300/callback"; //ConfigurationManager.AppSettings["redirectUrl"] as string; 
             var environment = "sandbox";//ConfigurationManager.AppSettings["appEnvironment"] as string; ;
 
+            
+            
             auth2Client ??= new OAuth2Client(clientid, clientsecret, redirectUrl, environment);
 
             List<OidcScopes> scopes = new List<OidcScopes>();
