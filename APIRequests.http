@@ -1,0 +1,73 @@
+// Get Access token and establish a connection before making any api Calls  
+//https://developer.intuit.com/app/developer/playground?code=AB11634035512Nn7EkJZljBeeBVoXDVeSRdyiwLirPIAkf09oB&state=PlaygroundAuth&realmId=4620816365202189300
+
+@authToken = eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..IqXqHehvVcJXCyFwhSYYNA.UhpH7L4IiGh2q36uIt3N1DHmfeSg-pSkC0s0n0pNTAGwLpPSGezH6lpponrq5PVsETEAHofl0FltQE4Ck6raaeXX8bjkhmTlUKa0tTo9-44Q5rj-zTeziBepyySh0-A1hL7novJ-EACNDv9Scunorw3R_krIGzMPgcCnAopCsZibpp2-n22CZXoORNVJRxe7k_qdlhuNfamKCXLOEaiK0Z84NbCxN8H90e8GXETT3iY3V30KzidJKbauzQ_5F88koFfpfHRAnk82Y9ddRvAfV4BFNv3EiG05gHLQr2moLHuLmwldY0BfUbDdHnRfsexF811I_cs0A-hPcdMGMwjuof43BacCl8yKpB-O4u7e7dUD4OTAb_SoRUEqKPb0La7JZH-qXaMTb9lZrYy3XnO1yK1QeNvHI7xMr3MergHIC_q_sER94Y3WgyZ3u_yPesR6-KWSJj7pmI3XHaga86MZo4zWXjyMqffkjXUNmhJ3WYzoKbYi2kf67AwqWfzq9H9ZHOSYYgo8QgDvSlZ11_wrVAmTdnvCM3i0N_i7rFazUfK9m5Fvo4sBmhfH1dCZhDMU8wiw9kAdDMYvtJlDd6JNfyuSssA2Uk1V3dbYBNoIc6bPss3N5gtp3Yok0TJRTy38eKCiSvH52XQJzKgIR-xDJ3NkNZNT39dh-X4sUme83F3j1LEHFwas6pXbMwqQZP78rW4pd43GNFTP9ujPW_jBArVsaDT4_nmUn_mbmaWkh8thXu3-4of3H3e4rRhceKDV.Fd1NByZXW5b3Z6KXInrxAg
+@host = https://sandbox-quick̥books.api.intuit.com
+@ProdBaseURL = https://quickbooks.api.intuit.com
+@SandboxBaseURL = https://sandbox-quickbooks.api.intuit.com
+
+
+
+
+# @name GetCompany Info
+GET {{SandboxBaseURL}}/v3/company/4620816365202189300/companyinfo/4620816365202189300
+Accept: application/json
+Authorization: Bearer {{authToken}}
+###
+
+# @name Create Customer
+POST https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365202189300/customer?minorversion=62
+Content-type:application/json
+Authorization: Bearer {{authToken}}
+
+{
+   "FullyQualifiedName":"Vipin Grocessries",
+   "PrimaryEmailAddr":{
+      "Address":"vkgopinathan@live.com"
+   },
+   "DisplayName":"Vipin Mallaya",
+   "Suffix":"Jr",
+   "Title":"Mr",
+   "MiddleName":"B",
+   "Notes":"My New Customer",
+   "FamilyName":"Mallaya",
+   "PrimaryPhone":{
+      "FreeFormNumber":"+91-9496828272"
+   },
+   "CompanyName":"Mallaya",
+   "BillAddr":{
+      "CountrySubDivisionCode":"CA",
+      "City":"Mountain View",
+      "PostalCode":"94042",
+      "Line1":"123 Main Street",
+      "Country":"USA"
+   },
+   "GivenName":"VIpin"
+} 
+###
+
+# @name Create Invoice
+
+POST {{SandboxBaseURL}}/v3/company/4620816365202189300/invoice?minorversion=62
+Content-type:application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "Line": [
+    {
+      "DetailType": "SalesItemLineDetail", 
+      "Amount": 100.0, 
+      "SalesItemLineDetail": {
+        "ItemRef": {
+          "name": "Services", 
+          "value": "1"
+        }
+      }
+    }
+  ], 
+  "CustomerRef": {
+    "value": "1"
+  }
+}
+
+ 
